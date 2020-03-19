@@ -1,24 +1,23 @@
 import Head from 'next/head'
 import {
   Box,
-  Heading,
+  Button,
 } from 'theme-ui'
 import Header from '../components/Header'
-import FeedTeaser from '../components/FeedTeaser'
 
-const Home = () => (
+const Today = () => (
   <>
     <Head>
-      <title>Create Next App</title>
+      <title>Dashboard</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <Header />
+    <Header/>
 
     <Box as="main">
-      <Heading as="h2">Feeds</Heading>
+
     </Box>
   </>
 )
 
-export default Home
+export default Today
