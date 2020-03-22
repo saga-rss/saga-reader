@@ -5,6 +5,10 @@ const theme = merge(
   swiss,
   {
     useColorSchemeMediaQuery: true,
+    fonts: {
+      body: '"PT Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+      heading: 'Cormorant, Garamond, serif',
+    },
     colors: {
       modes: {
         dark: {
@@ -18,6 +22,12 @@ const theme = merge(
         cursor: 'pointer',
       },
     },
+    textStyles: {
+      meta: {
+        fontSize: 0,
+        textTransform: 'uppercase',
+      }
+    }
   },
 )
 

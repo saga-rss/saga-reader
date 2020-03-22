@@ -8,9 +8,9 @@ import {
 } from 'theme-ui'
 import Link from 'next/link'
 
-const Header = () => {
+const Header: React.FunctionComponent = () => {
   return (
-    <header sx={{
+    <Box as="header" sx={{
       borderBottom: '1px solid #eaeaea'
     }}>
       <Flex sx={{
@@ -51,7 +51,7 @@ const Header = () => {
         </Flex>
 
       </Flex>
-    </header>
+    </Box>
   )
 }
 

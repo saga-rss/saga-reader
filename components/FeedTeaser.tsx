@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import {
-  jsx,
+  Box,
   Card,
   Heading,
   IconButton,
@@ -10,8 +10,12 @@ import {
 } from 'theme-ui'
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io'
 
+type Props = {
+  feed: any;
+  isSubscribed: boolean;
+}
 
-const FeedTeaser = ({ feed, isSubscribed }) => {
+const FeedTeaser: React.FunctionComponent<Props> = ({ feed, isSubscribed }) => {
   const {
     // id,
     image,
@@ -21,7 +25,7 @@ const FeedTeaser = ({ feed, isSubscribed }) => {
   } = feed
   return (
     <Card as="article">
-      <header sx={{
+      <Box as="header" sx={{
         p: 2,
         display: 'flex',
         flexDirection: 'row',
@@ -36,13 +40,13 @@ const FeedTeaser = ({ feed, isSubscribed }) => {
         }>
           <IoIosCheckmarkCircleOutline size={24}/>
         </IconButton>
-      </header>
+      </Box>
 
       {image && (
         <Image src={image}/>
       )}
 
-      <footer sx={{
+      <Box as="footer" sx={{
         p: 2,
         display: 'flex',
         flexDirection: 'row',
@@ -51,7 +55,7 @@ const FeedTeaser = ({ feed, isSubscribed }) => {
         <Text>{postCount} posts</Text>
 
         <Text>{interests.join(', ')}</Text>
-      </footer>
+      </Box>
     </Card>
   )
 }
