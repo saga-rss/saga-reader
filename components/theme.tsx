@@ -22,10 +22,30 @@ const theme = merge(
         cursor: 'pointer',
       },
     },
+    teaser: {
+      left: {
+        flexDirection: ['column', 'row'],
+      },
+      leftCompact: {
+        variant: 'teaser.left',
+      },
+      right: {
+        flexDirection: ['column', 'row-reverse'],
+      },
+      rightCompact: {
+        variant: 'teaser.right',
+      },
+    },
     textStyles: {
       meta: {
         fontSize: 0,
         textTransform: 'uppercase',
+      },
+      sectionTitle: {
+        borderBottom: '1px solid',
+        borderColor: 'gray',
+        pb: 2,
+        mb: 3
       }
     }
   },

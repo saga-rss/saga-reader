@@ -1,23 +1,33 @@
 import {
   Box,
+  Grid,
   Heading,
-  IconButton,
-  Image,
-  Text,
 } from 'theme-ui'
-import {IoIosBookmark} from 'react-icons/io'
 
 type Props = {
   children: any;
+  columns?: number;
   title: string;
 }
 
-const TeaserList: React.FunctionComponent<Props> = ({ children, title }) => {
+const TeaserList: React.FunctionComponent<Props> = (
+  {
+    children,
+    columns = 2,
+    title
+  }
+) => {
   return (
-    <Box as="article">
-      <Heading as="h2">{title}</Heading>
+    <Box as="article" sx={{
+      '& + &': {
+        mt: [2, 4],
+      }
+    }}>
+      <Heading as="h2" variant="textStyles.sectionTitle">{title}</Heading>
 
-      {children}
+      <Grid columns={[1, columns]} gap={columns < 2 ? 2 : 4}>
+        {children}
+      </Grid>
     </Box>
   )
 }

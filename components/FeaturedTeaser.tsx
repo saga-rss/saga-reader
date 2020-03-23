@@ -8,16 +8,23 @@ import {
 import {IoIosBookmark} from 'react-icons/io'
 
 type Props = {
-  title: string;
-  topMeta?: string;
   bottomMeta?: string;
+  image?: string;
+  link: string;
+  onBookmarkClick?: any;
+  title: string;
+  topLowerMeta?: string;
+  topMeta?: string;
 }
 
-const PostTeaser: React.FunctionComponent<Props> = (
+const FeaturedTeaser: React.FunctionComponent<Props> = (
   {
     bottomMeta,
+    image,
+    link,
     title,
     topMeta,
+    topLowerMeta,
   }
 ) => {
   return (
@@ -36,7 +43,7 @@ const PostTeaser: React.FunctionComponent<Props> = (
             width: '100%',
             height: '100%'
           }}
-          src="https://via.placeholder.com/300x200"/>
+          src={image} />
       </Box>
 
       <Box sx={{
@@ -49,30 +56,46 @@ const PostTeaser: React.FunctionComponent<Props> = (
           justifyContent: 'space-between',
           mb: [1, 2]
         }}>
-          <Text variant="textStyles.meta" sx={{
-            color: 'primary',
-            fontWeight: 'heading'
-          }}>
-            {topMeta}
-          </Text>
+
+          <Box>
+            {topMeta && (
+              <Text variant="textStyles.meta" sx={{
+                color: 'primary',
+                fontWeight: 'heading'
+              }}>
+                {topMeta}
+              </Text>
+            )}
+
+            {topLowerMeta && (
+              <Text sx={{
+                color: 'gray',
+                fontSize: 0,
+              }}>
+                {topLowerMeta}
+              </Text>
+            )}
+          </Box>
 
           <IconButton>
             <IoIosBookmark size={16}/>
           </IconButton>
         </Box>
 
-        <Heading as="h3" sx={{mb: 2, fontSize: [3, 5]}}>{title}</Heading>
+        <Heading as="h3" sx={{mb: [2, 3], fontSize: [3, 5]}}>{title}</Heading>
 
         <Box>
-          <Text variant="textStyles.meta" sx={{
-            color: 'gray'
-          }}>
-            {bottomMeta}
-          </Text>
+          {bottomMeta && (
+            <Text variant="textStyles.meta" sx={{
+              color: 'gray'
+            }}>
+              {bottomMeta}
+            </Text>
+          )}
         </Box>
       </Box>
     </Box>
   )
 }
 
-export default PostTeaser
+export default FeaturedTeaser
