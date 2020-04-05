@@ -9,6 +9,7 @@ import {IoIosBookmark} from 'react-icons/io'
 
 type Props = {
   bottomMeta?: string;
+  /** an image related to the post */
   image?: string;
   link: string;
   onBookmarkClick?: any;

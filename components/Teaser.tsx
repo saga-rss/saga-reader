@@ -5,6 +5,7 @@ import {
   Image,
   Text,
 } from 'theme-ui'
+import Link from "next/link";
 import {IoIosBookmark} from 'react-icons/io'
 
 type Props = {
@@ -92,7 +93,11 @@ const Teaser: React.FunctionComponent<Props> = (
           </Box>
         )}
 
-        <Heading as="h3" sx={{mb: 2, fontSize: 2}}>{title}</Heading>
+        <Heading as="h3" sx={{mb: 2, fontSize: 2}}>
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            {title}
+          </a>
+        </Heading>
 
         {!isCompact && (
           <Box>

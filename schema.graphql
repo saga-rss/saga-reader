@@ -1,0 +1,165 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Feed {
+  canonicalUrl: String
+  copyright: String
+  description: String
+  favoriteCount: Int
+  feedType: FeedType
+  feedUrl: String!
+  id: ObjectId!
+  identifier: String
+  images: FeedImage
+  interests: [Interest]
+  isFeatured: Boolean
+  isPublic: Boolean
+  language: String
+  postCount: Int
+  posts(limit: Int, skip: Int): [Post]
+  publishedDate: DateTime
+  publisher: String
+  subscriptionCount: Int
+  summary: String
+  themeColor: String
+  title: String
+  updatedDate: DateTime
+  url: String
+}
+
+type FeedImage {
+  favicon: String
+  featured: String
+  logo: String
+}
+
+type Interest {
+  children: [Interest]
+  id: ObjectId
+  name: String
+  slug: String
+}
+
+type Mutation {
+  feedCreate(feedUrl: String!, interests: [ObjectId]): [Feed]
+  feedSubscribe(feedId: ObjectId!): Feed
+  feedUnsubscribe(feedId: ObjectId!): Feed
+  interestCreate(name: String!, parent: ObjectId): Interest
+  interestUpdate(id: ObjectId!, name: String, parent: ObjectId): Interest
+  userCreate(displayName: String!, email: String!, password: String!, username: String!): User
+  userUpdate: User
+}
+
+type PaginationSettings {
+  limit: Int
+  skip: Int
+}
+
+type Post {
+  author: String
+  canonicalUrl: String
+  commentUrl: String
+  content: String
+  description: String
+  direction: String
+  enclosures: [PostEnclosure]
+  favoriteCount: Int
+  feed: Feed
+  guid: String
+  id: ObjectId!
+  identifier: String!
+  images: PostImage
+  interests: [String]
+  isPublic: Boolean
+  language: String
+  postType: FeedType
+  postUpdatedDate: DateTime
+  publishedDate: DateTime
+  summary: String
+  title: String
+  updatedAt: DateTime
+  url: String
+  wordCount: Int
+}
+
+type PostEnclosure {
+  description: String
+  height: String
+  id: ObjectId!
+  length: String
+  medium: String
+  title: String
+  type: String
+  url: String
+  width: String
+}
+
+type PostImage {
+  favicon: String
+  featured: String
+  logo: String
+}
+
+type Query {
+  feedById(id: ObjectId!): Feed
+  feedSearch(sort: Sort, sortDirection: SortDirection): [Feed]
+  interestSearch: [Interest]
+  postById(id: ObjectId!): Post
+  userById(id: ObjectId!): User
+  userLogin(email: String!, password: String): User
+  userSearch(sort: Sort): [User]
+}
+
+type User {
+  bio: String
+  displayName: String
+  email: String
+  id: ObjectId!
+  interests: [String]
+  isActive: Boolean
+  isAdmin: Boolean
+  token: String
+  url: String
+  username: String
+}
+
+enum CacheControlScope {
+  PRIVATE
+  PUBLIC
+}
+
+enum FeedType {
+  article
+  audio
+  video
+}
+
+enum Sort {
+  favoriteCount
+  postCount
+  relevance
+  title
+  updatedDate
+}
+
+enum SortDirection {
+  asc
+  desc
+}
+
+
+"The `ObjectId` scalar type represents a mongodb unique ID"
+scalar ObjectId
+
+"A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar DateTime
+
+"A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar Date
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload

@@ -43,9 +43,9 @@ const Header: React.FunctionComponent = () => {
             </UILink>
           </Link>
 
-          <Link href="/interests">
+          <Link href="/discover">
             <UILink sx={{ variant: 'styles.a' }}>
-              Interests
+              Discover
             </UILink>
           </Link>
         </Flex>
