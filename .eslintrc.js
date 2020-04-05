@@ -16,5 +16,10 @@ module.exports = {
   },
   rules: {
     "react/prop-types": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

@@ -4,16 +4,16 @@ import { Box } from 'theme-ui'
 import Header from '../components/Header'
 
 const Today = () => (
-    <>
-        <Head>
-            <title>Dashboard</title>
-            <link rel="icon" href="/favicon.ico" />
-        </Head>
+  <>
+    <Head>
+      <title>Dashboard</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
 
-        <Header />
+    <Header />
 
-        <Box as="main"></Box>
-    </>
+    <Box as="main"></Box>
+  </>
 )
 
 export default Today
