@@ -1,58 +1,50 @@
 /** @jsx jsx */
-
-import {
-  jsx,
-  Box,
-  Flex,
-  Link as UILink,
-} from 'theme-ui'
+import React from 'react'
+import { jsx, Box, Flex, Link as UILink } from 'theme-ui'
 import Link from 'next/link'
 
 const Header: React.FunctionComponent = () => {
-  return (
-    <Box as="header" sx={{
-      borderBottom: '1px solid #eaeaea'
-    }}>
-      <Flex sx={{
-        py: [2, 3],
-        px: [2, 4],
-      }}>
+    return (
+        <Box
+            as="header"
+            sx={{
+                borderBottom: '1px solid #eaeaea',
+            }}
+        >
+            <Flex
+                sx={{
+                    py: [2, 3],
+                    px: [2, 4],
+                }}
+            >
+                <Box
+                    sx={{
+                        pr: 4,
+                        mr: 4,
+                        borderRight: '1px solid #eaeaea',
+                    }}
+                >
+                    <Link href="/">
+                        <UILink sx={{ variant: 'styles.a' }}>SAGA</UILink>
+                    </Link>
+                </Box>
 
-        <Box sx={{
-          pr: 4,
-          mr: 4,
-          borderRight: '1px solid #eaeaea',
-        }}>
-          <Link href="/">
-            <UILink sx={{ variant: 'styles.a' }}>
-              SAGA
-            </UILink>
-          </Link>
+                <Flex as="nav">
+                    <Link href="/today">
+                        <UILink sx={{ variant: 'styles.a', mr: 4 }}>Today</UILink>
+                    </Link>
+
+                    <Link href="/bookmarks">
+                        <UILink sx={{ variant: 'styles.a', mr: 4 }}>Bookmarks</UILink>
+                    </Link>
+
+                    <Link href="/discover">
+                        <UILink sx={{ variant: 'styles.a' }}>Discover</UILink>
+                    </Link>
+                </Flex>
+            </Flex>
         </Box>
-
-        <Flex as="nav">
-          <Link href="/today">
-            <UILink sx={{ variant: 'styles.a', mr: 4 }}>
-              Today
-            </UILink>
-          </Link>
-
-          <Link href="/bookmarks">
-            <UILink sx={{ variant: 'styles.a', mr: 4 }}>
-              Bookmarks
-            </UILink>
-          </Link>
-
-          <Link href="/discover">
-            <UILink sx={{ variant: 'styles.a' }}>
-              Discover
-            </UILink>
-          </Link>
-        </Flex>
-
-      </Flex>
-    </Box>
-  )
+    )
 }
 
 export default Header
