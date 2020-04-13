@@ -50,7 +50,7 @@ type Mutation {
   feedUnsubscribe(feedId: ObjectId!): Feed
   interestCreate(name: String!, parent: ObjectId): Interest
   interestUpdate(id: ObjectId!, name: String, parent: ObjectId): Interest
-  userCreate(displayName: String!, email: String!, password: String!, username: String!): User
+  userCreateOrUpdate(displayName: String!, email: String!, interests: [ObjectId], password: String!, username: String!): User
   userUpdate: User
 }
 
@@ -119,7 +119,7 @@ type User {
   displayName: String
   email: String
   id: ObjectId!
-  interests: [String]
+  interests: [ObjectId]
   isActive: Boolean
   isAdmin: Boolean
   token: String

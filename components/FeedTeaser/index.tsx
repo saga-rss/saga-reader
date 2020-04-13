@@ -3,12 +3,12 @@ import React from 'react'
 import { jsx, Box, Card, Heading, IconButton, Image, Text } from 'theme-ui'
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io'
 
-type Props = {
+interface FeedTeaserProps {
   feed: any
   isSubscribed: boolean
 }
 
-const FeedTeaser: React.FunctionComponent<Props> = ({ feed, isSubscribed }) => {
+const FeedTeaser: React.FC<FeedTeaserProps> = ({ feed, isSubscribed }) => {
   const {
     // id,
     image,

@@ -1,0 +1,7 @@
+schema: http://localhost:8080/graphql
+generates:
+  generated.d.ts:
+    - typescript
+config:
+  scalars:
+    DateTime: Date

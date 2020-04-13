@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Heading, IconButton, Image, Text } from 'theme-ui'
 import { IoIosBookmark } from 'react-icons/io'
 
-type Props = {
+export interface FeaturedTeaserProps {
   bottomMeta?: string
   image?: string
   link: string
@@ -12,7 +12,14 @@ type Props = {
   topMeta?: string
 }
 
-const FeaturedTeaser: React.FunctionComponent<Props> = ({ bottomMeta, image, link, title, topMeta, topLowerMeta }) => {
+const FeaturedTeaser: React.FunctionComponent<FeaturedTeaserProps> = ({
+  bottomMeta,
+  image,
+  link,
+  title,
+  topMeta,
+  topLowerMeta,
+}) => {
   return (
     <Box
       as="article"

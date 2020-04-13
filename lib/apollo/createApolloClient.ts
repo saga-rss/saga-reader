@@ -13,7 +13,7 @@ import cookie from 'cookie'
 const getToken = (req?: IncomingMessage) => {
   const cookies = cookie.parse(req ? req.headers.cookie || '' : document.cookie)
 
-  return cookies.token
+  return cookies.saga_token
 }
 
 const createApolloClient = (initialState = {}, ctx: NextPageContext) => {

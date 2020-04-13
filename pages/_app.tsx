@@ -3,11 +3,11 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 
 import { withApollo } from '../lib/apollo'
-import ThemeWrapper from '../components/ThemeWrapper'
+import AppWrapper from '../components/AppWrapper'
 
-const SagaApp = ({ Component, pageProps }: AppProps) => {
+const SagaApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <ThemeWrapper>
+    <AppWrapper>
       <Head>
         <link
           href="https://fonts.googleapis.com/css?family=Cormorant:500,700|PT+Sans:400,400i,700&display=swap"
@@ -15,7 +15,7 @@ const SagaApp = ({ Component, pageProps }: AppProps) => {
         />
       </Head>
       <Component {...pageProps} />
-    </ThemeWrapper>
+    </AppWrapper>
   )
 }
 
