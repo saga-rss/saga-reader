@@ -1,36 +1,42 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 import { useForm, ErrorMessage } from 'react-hook-form'
 import Cookies from 'js-cookie'
+import { useTranslation } from 'react-i18next'
 import { Button, Input, Label } from 'theme-ui'
 
-import SelectField from '../Form/SelectField'
+import { NameSpace } from '../../lib/i18n'
+import SelectField, { SelectFieldOptions } from '../Form/SelectField'
 import { CREATE_UPDATE_USER } from '../../lib/queries'
-import useInterests from '../hooks/useInterests'
-import { Interest } from '../../generated'
+import useInterests from '../Hooks/useInterests'
 
 interface RegistrationFormData {
   displayName: string
   email: string
-  interests: Interest[]
+  interests: SelectFieldOptions[]
   password: string
   username: string
 }
 
-const getSubmissionError: React.FC<Error> | null = (error) => {
-  if (error.message.indexOf('already exists') >= 0) {
-    return <p>this email or username already exists</p>
-  } else {
-    return null
-  }
-}
-
 const RegistrationForm: React.FC = () => {
+  const { t } = useTranslation(NameSpace.COMMON)
   const { register, errors, handleSubmit, control } = useForm<RegistrationFormData>()
   const [userCreateOrUpdate, { data, loading, error: submissionError }] = useMutation(CREATE_UPDATE_USER)
   const { interestsOptions } = useInterests()
 
-  const onSubmit = async (formData) => {
+  const getSubmissionError = useCallback((error) => {
+    if (error.message.indexOf('already exists') >= 0) {
+      return <p>{t('errors.alreadyExists')}</p>
+    } else if (error.message.indexOf('bad email') >= 0) {
+      return <p>{t('errors.invalidEmailAddress')}</p>
+    } else if (error.message.indexOf('bad username') >= 0) {
+      return <p>{t('errors.invalidUsername')}</p>
+    } else {
+      return null
+    }
+  }, [])
+
+  const onSubmit = async (formData: RegistrationFormData) => {
     await userCreateOrUpdate({
       variables: {
         ...formData,
@@ -55,22 +61,22 @@ const RegistrationForm: React.FC = () => {
       <div>
         <Label>Display Name</Label>
         <Input type="text" name="displayName" ref={register({ required: true })} />
-        <ErrorMessage errors={errors} name="displayName " />
+        <ErrorMessage errors={errors} name="displayName" message={t('errors.requiredField')} />
       </div>
       <div>
         <Label>Username</Label>
         <Input type="text" name="username" ref={register({ required: true })} />
-        <ErrorMessage errors={errors} name="username " />
+        <ErrorMessage errors={errors} name="username" message={t('errors.requiredField')} />
       </div>
       <div>
         <Label>Email Address</Label>
         <Input type="email" name="email" ref={register({ required: true })} />
-        <ErrorMessage errors={errors} name="email " />
+        <ErrorMessage errors={errors} name="email" message={t('errors.requiredField')} />
       </div>
       <div>
         <Label>Password</Label>
         <Input type="password" name="password" ref={register({ required: true })} />
-        <ErrorMessage errors={errors} name="password " />
+        <ErrorMessage errors={errors} name="password" message={t('errors.requiredField')} />
       </div>
       <div>
         <Label>Interests</Label>
@@ -81,7 +87,7 @@ const RegistrationForm: React.FC = () => {
           rules={{ required: true }}
           instanceId="registrationInterests"
         />
-        <ErrorMessage errors={errors} name="interests" />
+        <ErrorMessage errors={errors} name="interests" message={t('errors.requiredField')} />
       </div>
       <div>
         <Button disabled={loading} type="submit">

@@ -6,7 +6,7 @@ export interface FeaturedTeaserProps {
   bottomMeta?: string
   image?: string
   link: string
-  onBookmarkClick?: any
+  onBookmarkClick?: void
   title: string
   topLowerMeta?: string
   topMeta?: string
@@ -15,7 +15,7 @@ export interface FeaturedTeaserProps {
 const FeaturedTeaser: React.FunctionComponent<FeaturedTeaserProps> = ({
   bottomMeta,
   image,
-  link,
+  // link,
   title,
   topMeta,
   topLowerMeta,

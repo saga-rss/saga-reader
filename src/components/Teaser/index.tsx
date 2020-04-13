@@ -3,18 +3,18 @@ import { Box, Heading, IconButton, Image, Text } from 'theme-ui'
 // import Link from 'next/link'
 import { IoIosBookmark } from 'react-icons/io'
 
-type Props = {
+interface TeaserProps {
   bottomMeta?: string
   image?: string
   link: string
-  onBookmarkClick?: any
+  onBookmarkClick?: void
   title: string
   topLowerMeta?: string
   topMeta?: string
   variant?: 'left' | 'right' | 'leftCompact' | 'rightCompact'
 }
 
-const Teaser: React.FunctionComponent<Props> = ({
+const Teaser: React.FunctionComponent<TeaserProps> = ({
   bottomMeta,
   image,
   link,

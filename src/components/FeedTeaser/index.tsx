@@ -2,16 +2,17 @@
 import React from 'react'
 import { jsx, Box, Card, Heading, IconButton, Image, Text } from 'theme-ui'
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io'
+import { Feed } from '../../../generated'
 
 interface FeedTeaserProps {
-  feed: any
+  feed: Feed
   isSubscribed: boolean
 }
 
 const FeedTeaser: React.FC<FeedTeaserProps> = ({ feed, isSubscribed }) => {
   const {
     // id,
-    image,
+    images: { logo, featured },
     interests,
     postCount,
     title,
@@ -34,7 +35,7 @@ const FeedTeaser: React.FC<FeedTeaserProps> = ({ feed, isSubscribed }) => {
         </IconButton>
       </Box>
 
-      {image && <Image src={image} />}
+      <Image src={featured || logo} />
 
       <Box
         as="footer"

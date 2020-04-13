@@ -1,0 +1,8 @@
+{
+  "errors": {
+    "alreadyExists": "This username or email address already exists. Please use a different one.",
+    "invalidEmailAddress": "Please enter a valid email address.",
+    "invalidUsername": "Your username should only contain alpha-numeric characters.",
+    "requiredField": "This field is required."
+  }
+}

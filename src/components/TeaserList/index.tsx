@@ -1,13 +1,12 @@
 import React from 'react'
 import { Box, Grid, Heading } from 'theme-ui'
 
-type Props = {
-  children: any
+interface TeaserListProps {
   columns?: number
   title: string
 }
 
-const TeaserList: React.FunctionComponent<Props> = ({ children, columns = 2, title }) => {
+const TeaserList: React.FunctionComponent<TeaserListProps> = ({ children, columns = 2, title }) => {
   return (
     <Box
       as="article"

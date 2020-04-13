@@ -15,6 +15,7 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
+    "@typescript-eslint/no-var-requires": "off",
     "react/prop-types": "off"
   },
   "settings": {

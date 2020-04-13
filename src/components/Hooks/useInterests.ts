@@ -1,24 +1,17 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
-
-import { GET_INTERESTS } from '../../lib/queries'
 import { ApolloQueryResult } from 'apollo-client'
 
-export interface SagaInterest {
-  children: SagaInterest[]
-  id: string
-  name: string
-  slug: string
-}
+import { GET_INTERESTS } from '../../lib/queries'
+import { Interest } from '../../../generated'
 
 export interface UseInterests {
-  interestsOptions: SagaInterest[]
-  interests: SagaInterest[]
-  refetch: any
+  interestsOptions: Interest[]
+  interests: Interest[]
 }
 
 const useInterests = (): UseInterests => {
-  const { loading, data, refetch } = useQuery(GET_INTERESTS)
+  const { loading, data } = useQuery(GET_INTERESTS)
 
   const interests = React.useMemo(() => {
     return loading || !data ? [] : data.interestSearch
@@ -31,7 +24,6 @@ const useInterests = (): UseInterests => {
   return {
     interestsOptions,
     interests,
-    refetch,
   }
 }
 
