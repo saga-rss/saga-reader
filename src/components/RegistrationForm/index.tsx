@@ -3,12 +3,13 @@ import { useMutation } from '@apollo/react-hooks'
 import { useForm, ErrorMessage } from 'react-hook-form'
 import Cookies from 'js-cookie'
 import { useTranslation } from 'react-i18next'
-import { Button, Input, Label } from 'theme-ui'
+import { Box, Button, Input, Label } from 'theme-ui'
 
 import { NameSpace } from '../../lib/i18n'
-import SelectField, { SelectFieldOptions } from '../Form/SelectField'
+import SelectField, { SelectFieldOptions } from '../../ui/Form/SelectField'
 import { CREATE_UPDATE_USER } from '../../lib/queries'
 import useInterests from '../Hooks/useInterests'
+import { FormRow, FormControl } from '../../ui/Form'
 
 interface RegistrationFormData {
   displayName: string
@@ -55,46 +56,65 @@ const RegistrationForm: React.FC = () => {
   }, [data])
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {submissionError && getSubmissionError(submissionError)}
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: ['column', 'row'],
+      }}
+    >
+      <img src="https://placehold.it/350/350" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {submissionError && getSubmissionError(submissionError)}
 
-      <div>
-        <Label>Display Name</Label>
-        <Input type="text" name="displayName" ref={register({ required: true })} />
-        <ErrorMessage errors={errors} name="displayName" message={t('errors.requiredField')} />
-      </div>
-      <div>
-        <Label>Username</Label>
-        <Input type="text" name="username" ref={register({ required: true })} />
-        <ErrorMessage errors={errors} name="username" message={t('errors.requiredField')} />
-      </div>
-      <div>
-        <Label>Email Address</Label>
-        <Input type="email" name="email" ref={register({ required: true })} />
-        <ErrorMessage errors={errors} name="email" message={t('errors.requiredField')} />
-      </div>
-      <div>
-        <Label>Password</Label>
-        <Input type="password" name="password" ref={register({ required: true })} />
-        <ErrorMessage errors={errors} name="password" message={t('errors.requiredField')} />
-      </div>
-      <div>
-        <Label>Interests</Label>
-        <SelectField
-          options={interestsOptions}
-          name="interests"
-          control={control}
-          rules={{ required: true }}
-          instanceId="registrationInterests"
-        />
-        <ErrorMessage errors={errors} name="interests" message={t('errors.requiredField')} />
-      </div>
-      <div>
-        <Button disabled={loading} type="submit">
-          Register
-        </Button>
-      </div>
-    </form>
+        <FormRow inline>
+          <FormControl>
+            <Label>{t('label.displayName')}</Label>
+            <Input type="text" name="displayName" ref={register({ required: true })} />
+            <ErrorMessage errors={errors} name="displayName" message={t('errors.requiredField')} />
+          </FormControl>
+
+          <FormControl>
+            <Label>{t('label.username')}</Label>
+            <Input type="text" name="username" ref={register({ required: true })} />
+            <ErrorMessage errors={errors} name="username" message={t('errors.requiredField')} />
+          </FormControl>
+        </FormRow>
+
+        <FormRow inline>
+          <FormControl>
+            <Label>{t('label.emailAddress')}</Label>
+            <Input type="email" name="email" ref={register({ required: true })} />
+            <ErrorMessage errors={errors} name="email" message={t('errors.requiredField')} />
+          </FormControl>
+
+          <FormControl>
+            <Label>{t('label.password')}</Label>
+            <Input type="password" name="password" ref={register({ required: true })} />
+            <ErrorMessage errors={errors} name="password" message={t('errors.requiredField')} />
+          </FormControl>
+        </FormRow>
+
+        <FormRow>
+          <FormControl>
+            <Label>{t('label.interests')}</Label>
+            <SelectField
+              options={interestsOptions}
+              name="interests"
+              control={control}
+              rules={{ required: true }}
+              instanceId="registrationInterests"
+            />
+            <ErrorMessage errors={errors} name="interests" message={t('errors.requiredField')} />
+          </FormControl>
+        </FormRow>
+
+        <FormRow>
+          <Button disabled={loading} type="submit">
+            {t('label.createAccount')}
+          </Button>
+        </FormRow>
+      </form>
+    </Box>
   )
 }
 

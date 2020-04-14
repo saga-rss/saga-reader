@@ -2,7 +2,17 @@
   "errors": {
     "alreadyExists": "This username or email address already exists. Please use a different one.",
     "invalidEmailAddress": "Please enter a valid email address.",
+    "invalidPassword": "Please enter the correct username and password combination.",
     "invalidUsername": "Your username should only contain alpha-numeric characters.",
-    "requiredField": "This field is required."
+    "requiredField": "This field is required.",
+    "userNotFound": "That username was not found."
+  },
+  "label": {
+    "createAccount": "Create Account",
+    "displayName": "Display Name",
+    "emailAddress": "Email Address",
+    "interests": "Interests",
+    "password": "Password",
+    "username": "Username"
   }
 }

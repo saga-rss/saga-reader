@@ -46,6 +46,18 @@ const theme = merge(swiss, {
       mb: 3,
     },
   },
+  forms: {
+    input: {
+      borderColor: 'gray',
+    },
+    label: {
+      textTransform: 'uppercase',
+      fontSize: 0,
+      fontWeight: 'bold',
+    },
+  },
 })
+
+console.log(theme)
 
 export default theme

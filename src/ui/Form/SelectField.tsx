@@ -1,4 +1,5 @@
 import React from 'react'
+import { useThemeUI } from 'theme-ui'
 import { Controller } from 'react-hook-form'
 import ReactSelect, { ReactSelectProps } from 'react-select'
 
@@ -13,6 +14,17 @@ const SelectField: React.FC<ReactSelectProps> = ({
   closeMenuOnSelect = false,
   ...delegated
 }) => {
+  const { theme } = useThemeUI()
+
+  const customStyles = {
+    container: (provided) => {
+      return {
+        ...provided,
+        borderColor: theme.colors.gray,
+      }
+    },
+  }
+
   return (
     <Controller
       as={ReactSelect}

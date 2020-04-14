@@ -11,6 +11,17 @@ export const CREATE_UPDATE_USER = gql`
   }
 `
 
+export const LOGIN_USER = gql`
+  query LoginUser($email: String!, $password: String!) {
+    userLogin(email: $email, password: $password) {
+      displayName
+      email
+      token
+      username
+    }
+  }
+`
+
 export const GET_INTERESTS = gql`
   query InterestSearch {
     interestSearch {

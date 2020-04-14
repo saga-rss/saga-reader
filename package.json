@@ -7,7 +7,8 @@
     "build": "next build",
     "generateTypes": "./node_modules/.bin/graphql-codegen",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest"
   },
   "husky": {
     "hooks": {
@@ -48,17 +49,22 @@
     "@apollo/react-ssr": "^3.1.3",
     "@graphql-codegen/cli": "^1.13.2",
     "@graphql-codegen/typescript": "^1.13.2",
+    "@testing-library/jest-dom": "^5.5.0",
+    "@testing-library/react": "^10.0.2",
     "@types/lodash": "^4.14.149",
     "@types/node": "^13.9.2",
     "@types/react": "^16.9.23",
     "@types/theme-ui": "^0.3.1",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
+    "babel-jest": "^25.3.0",
+    "babel-plugin-graphql-tag": "^2.5.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "husky": "^4.2.3",
+    "jest": "^25.3.0",
     "lint-staged": "^10.1.2",
     "prettier": "^2.0.2",
     "typescript": "^3.8.3"

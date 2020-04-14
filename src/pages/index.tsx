@@ -4,6 +4,7 @@ import { Box } from 'theme-ui'
 
 import Header from '../components/Header'
 import RegistrationForm from '../components/RegistrationForm'
+import LoginForm from '../components/LoginForm'
 
 const Home = () => {
   return (
@@ -24,7 +25,7 @@ const Home = () => {
           px: [2, 0],
         }}
       >
-        <RegistrationForm />
+        <LoginForm />
       </Box>
     </>
   )
