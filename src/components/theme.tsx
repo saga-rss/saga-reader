@@ -1,11 +1,23 @@
 import swiss from '@theme-ui/preset-swiss'
 import merge from 'lodash/merge'
 
+const siteWidth = 1120
+
 const theme = merge(swiss, {
-  useColorSchemeMediaQuery: true,
-  fonts: {
-    body: '"PT Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
-    heading: 'Cormorant, Garamond, serif',
+  buttons: {
+    text: {
+      appearance: 'none',
+      color: 'inherit',
+      cursor: 'pointer',
+      background: 'transparent',
+      border: 'none',
+      borderRadius: 0,
+      fontFamily: 'inherit',
+      fontSize: 'inherit',
+      margin: 0,
+      padding: 0,
+      textDecoration: 'underline',
+    },
   },
   colors: {
     modes: {
@@ -15,10 +27,29 @@ const theme = merge(swiss, {
       },
     },
   },
+  fonts: {
+    body: '"PT Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+    heading: 'Cormorant, Garamond, serif',
+  },
+  forms: {
+    input: {
+      borderColor: 'gray',
+    },
+    label: {
+      textTransform: 'uppercase',
+      fontSize: 0,
+      fontWeight: 'bold',
+    },
+  },
   styles: {
     a: {
       cursor: 'pointer',
     },
+  },
+  sizes: {
+    siteWidth,
+    mainColumn: Math.floor(siteWidth * 0.6),
+    sidebarColumn: Math.floor(siteWidth * 0.4),
   },
   teaser: {
     left: {
@@ -46,16 +77,7 @@ const theme = merge(swiss, {
       mb: 3,
     },
   },
-  forms: {
-    input: {
-      borderColor: 'gray',
-    },
-    label: {
-      textTransform: 'uppercase',
-      fontSize: 0,
-      fontWeight: 'bold',
-    },
-  },
+  useColorSchemeMediaQuery: true,
 })
 
 console.log(theme)

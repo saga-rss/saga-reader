@@ -3,13 +3,14 @@ import Head from 'next/head'
 import { Box, Grid } from 'theme-ui'
 import { useQuery } from '@apollo/react-hooks'
 
+import { withApollo } from '../lib/apollo'
 import { GET_FEEDS } from '../lib/queries'
 import Header from '../components/Header'
 import FeaturedTeaser from '../components/FeaturedTeaser'
 import Teaser from '../components/Teaser'
 import TeaserList from '../components/TeaserList'
 
-const Home = () => {
+const Latest = () => {
   const feeds = useQuery(GET_FEEDS)
 
   return (
@@ -96,4 +97,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default withApollo({ ssr: true })(Latest)

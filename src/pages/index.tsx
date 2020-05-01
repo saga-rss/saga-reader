@@ -1,20 +1,20 @@
-import React from 'react'
+import React, { FC, useState } from 'react'
 import Head from 'next/head'
 import { Box } from 'theme-ui'
 
-import Header from '../components/Header'
+import { withApollo } from '../lib/apollo'
 import RegistrationForm from '../components/RegistrationForm'
 import LoginForm from '../components/LoginForm'
 
-const Home = () => {
+const Home: FC<{ hasAccount?: boolean }> = ({ hasAccount = false }) => {
+  const [register, setRegister] = useState(hasAccount)
+
   return (
     <>
       <Head>
         <title>Saga Reader</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Header />
 
       <Box
         as="main"
@@ -25,10 +25,11 @@ const Home = () => {
           px: [2, 0],
         }}
       >
-        <LoginForm />
+        {register && <RegistrationForm onLoginClick={() => setRegister(false)} />}
+        {!register && <LoginForm onRegisterClick={() => setRegister(true)} />}
       </Box>
     </>
   )
 }
 
-export default Home
+export default withApollo({ ssr: true })(Home)

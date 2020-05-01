@@ -3,7 +3,7 @@ import { useLazyQuery } from '@apollo/react-hooks'
 import { useForm, ErrorMessage } from 'react-hook-form'
 import Cookies from 'js-cookie'
 import { useTranslation } from 'react-i18next'
-import { Box, Button, Input, Label } from 'theme-ui'
+import { Box, Button, Input, Label, Text } from 'theme-ui'
 
 import { NameSpace } from '../../lib/i18n'
 import { LOGIN_USER } from '../../lib/queries'
@@ -14,7 +14,11 @@ interface LoginFormData {
   password: string
 }
 
-const LoginForm: React.FC = () => {
+interface LoginFormProps {
+  onRegisterClick: () => any
+}
+
+const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick }) => {
   const { t } = useTranslation(NameSpace.COMMON)
   const { register, errors, handleSubmit } = useForm<LoginFormData>()
   const [userLogin, { data, loading, error: submissionError }] = useLazyQuery(LOGIN_USER)
@@ -48,35 +52,54 @@ const LoginForm: React.FC = () => {
     <Box
       sx={{
         display: 'flex',
-        flexDirection: ['column', 'row'],
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
       }}
     >
-      <img src="https://placehold.it/350/350" />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {submissionError && getSubmissionError(submissionError)}
+      <Box
+        sx={{
+          margin: 'auto',
+          width: ['90%', '70%', 'sidebarColumn'],
+        }}
+      >
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {submissionError && getSubmissionError(submissionError)}
 
-        <FormRow inline>
-          <FormControl>
-            <Label>{t('label.emailAddress')}</Label>
-            <Input type="email" name="email" ref={register({ required: true })} />
-            <ErrorMessage errors={errors} name="email" message={t('errors.requiredField')} />
-          </FormControl>
-        </FormRow>
+          <FormRow inline>
+            <FormControl>
+              <Label>{t('label.emailAddress')}</Label>
+              <Input type="email" name="email" ref={register({ required: true })} />
+              <ErrorMessage errors={errors} name="email" message={t('errors.requiredField')} />
+            </FormControl>
+          </FormRow>
 
-        <FormRow inline>
-          <FormControl>
-            <Label>{t('label.password')}</Label>
-            <Input type="password" name="password" ref={register({ required: true })} />
-            <ErrorMessage errors={errors} name="password" message={t('errors.requiredField')} />
-          </FormControl>
-        </FormRow>
+          <FormRow inline>
+            <FormControl>
+              <Label>{t('label.password')}</Label>
+              <Input type="password" name="password" ref={register({ required: true })} />
+              <ErrorMessage errors={errors} name="password" message={t('errors.requiredField')} />
+            </FormControl>
+          </FormRow>
 
-        <FormRow>
-          <Button disabled={loading} type="submit">
-            {t('label.createAccount')}
-          </Button>
-        </FormRow>
-      </form>
+          <FormRow>
+            <Button disabled={loading} type="submit">
+              {t('label.login')}
+            </Button>
+          </FormRow>
+
+          <FormRow>
+            <Text sx={{ fontSize: 0 }}>
+              {t('login.needAccount')}{' '}
+              <Button variant="text" onClick={() => onRegisterClick()}>
+                {t('login.registerNow')}
+              </Button>
+            </Text>
+          </FormRow>
+        </form>
+      </Box>
     </Box>
   )
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 
-import { withApollo } from '../lib/apollo'
 import AppWrapper from '../components/AppWrapper'
 
 const SagaApp: React.FC<AppProps> = ({ Component, pageProps }) => {
@@ -19,4 +18,4 @@ const SagaApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   )
 }
 
-export default withApollo()(SagaApp)
+export default SagaApp

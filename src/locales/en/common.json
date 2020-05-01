@@ -12,7 +12,16 @@
     "displayName": "Display Name",
     "emailAddress": "Email Address",
     "interests": "Interests",
+    "login": "Login",
     "password": "Password",
     "username": "Username"
+  },
+  "login": {
+    "needAccount": "Need an account?",
+    "registerNow": "Register here."
+  },
+  "register": {
+    "haveAccount": "Already have an account?",
+    "loginNow": "Login here."
   }
 }

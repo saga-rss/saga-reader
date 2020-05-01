@@ -8,6 +8,8 @@ import { ApolloProvider } from '@apollo/react-hooks'
 
 import createApolloClient from './createApolloClient'
 
+// Taken from: https://github.com/zeit/next.js/blob/canary/examples/with-apollo/lib/apollo.js
+
 interface InitialWithApolloParams {
   /** If server-side rendering enabled */
   ssr?: boolean
@@ -91,7 +93,7 @@ export const withApollo = ({ ssr = false }: InitialWithApolloParams = {}) => (Pa
       client = apolloClient
     } else {
       // Happens on: next.js csr
-      client = initApolloClient(apolloState, undefined)
+      client = initApolloClient(apolloState, null)
     }
 
     return (
