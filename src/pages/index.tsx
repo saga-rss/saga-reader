@@ -1,13 +1,21 @@
 import React, { FC, useState } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { Box } from 'theme-ui'
 
+import useUser from '../components/Hooks/useUser'
 import { withApollo } from '../lib/apollo'
 import RegistrationForm from '../components/RegistrationForm'
 import LoginForm from '../components/LoginForm'
 
 const Home: FC<{ hasAccount?: boolean }> = ({ hasAccount = false }) => {
+  const router = useRouter()
+  const { token } = useUser()
   const [register, setRegister] = useState(hasAccount)
+
+  if (token) {
+    router.push('/latest')
+  }
 
   return (
     <>

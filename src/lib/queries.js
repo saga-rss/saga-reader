@@ -1,12 +1,32 @@
 import gql from 'graphql-tag'
 
 export const CREATE_UPDATE_USER = gql`
-  mutation UserCreateOrUpdate($displayName: String!, $email: String!, $password: String!, $username: String!) {
-    userCreateOrUpdate(displayName: $displayName, email: $email, password: $password, username: $username) {
+  mutation UserCreateOrUpdate(
+    $displayName: String!
+    $email: String!
+    $interests: [MongoID!]!
+    $password: String!
+    $username: String!
+  ) {
+    userCreateOrUpdate(
+      displayName: $displayName
+      email: $email
+      interests: $interests
+      password: $password
+      username: $username
+    ) {
       displayName
       email
       token
       username
+      interests {
+        id
+        name
+        children {
+          id
+          name
+        }
+      }
     }
   }
 `

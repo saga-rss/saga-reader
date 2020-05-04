@@ -4,6 +4,7 @@ import { useForm, ErrorMessage } from 'react-hook-form'
 import Cookies from 'js-cookie'
 import { useTranslation } from 'react-i18next'
 import { Box, Button, Input, Label, Text } from 'theme-ui'
+import { useRouter } from 'next/router'
 
 import { NameSpace } from '../../lib/i18n'
 import SelectField, { SelectFieldOptions } from '../../ui/Form/SelectField'
@@ -24,6 +25,7 @@ interface RegistrationFormProps {
 }
 
 const RegistrationForm: React.FC<RegistrationFormProps> = ({ onLoginClick }) => {
+  const router = useRouter()
   const { t } = useTranslation(NameSpace.COMMON)
   const { register, errors, handleSubmit, control } = useForm<RegistrationFormData>()
   const [userCreateOrUpdate, { data, loading, error: submissionError }] = useMutation(CREATE_UPDATE_USER)
@@ -42,11 +44,14 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onLoginClick }) => 
   }, [])
 
   const onSubmit = async (formData: RegistrationFormData) => {
+    const variables = {
+      ...formData,
+      interests: formData.interests.map((interest) => interest.value.toString()),
+    }
+
+    console.log(variables)
     await userCreateOrUpdate({
-      variables: {
-        ...formData,
-        interests: formData.interests.map((interest) => interest.value),
-      },
+      variables,
     })
   }
 
@@ -56,6 +61,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onLoginClick }) => 
         expires: new Date(new Date().getTime() + 30 * 60 * 60 * 1000),
         secure: process.env.NODE_ENV !== 'development',
       })
+      router.push('/latest')
     }
   }, [data])
 
